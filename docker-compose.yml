@@ -1,0 +1,28 @@
+version: "2"
+services:
+  metabase:
+    image: metabase/metabase
+    volumes: 
+      - ./metabase-config:/metabase-config
+    environment:
+      MB_DB_FILE: /metabase-config/metabase.db
+    networks:
+      - back-tier
+    ports:
+      - "3000:3000"
+  db:
+    image: postgres:alpine
+    volumes:
+      - metabase-sql:/var/lib/postgresql/data
+      - ./sql-data-dump:/pg-dump
+      - ./init.d:/docker-entrypoint-initdb.d
+    networks:
+      - back-tier
+    environment:
+      POSTGRES_DB: RC-Directory
+volumes:
+  metabase-sql:
+    driver: local
+networks:
+  back-tier:
+    driver: bridge

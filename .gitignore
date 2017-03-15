@@ -1,0 +1,8 @@
+#Original SQL Data directory
+sql-data-dump/*
+
+#Local Metabase Config
+metabase-config/*
+
+#Vim swp files
+*.swp
