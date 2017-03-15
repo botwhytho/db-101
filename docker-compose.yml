@@ -19,7 +19,7 @@ services:
     networks:
       - back-tier
     environment:
-      POSTGRES_DB: RC-Directory
+      POSTGRES_DB: INPUT_DATABASE_NAME
 volumes:
   metabase-sql:
     driver: local
